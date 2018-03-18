@@ -84,7 +84,7 @@ bool equal_range(Iter b, Iter e, Iter s)
 
 //Task 7
 template<typename Iter>
-void sr(Iter b, Iter e)
+void sort(Iter b, Iter e)
 {
 	while (b != e)
 	{
