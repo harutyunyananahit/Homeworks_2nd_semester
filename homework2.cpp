@@ -3,22 +3,29 @@
 using namespace std;
 
 template <typename Iter>
+int min_element(Iter beg, Iter end)
+{
+	int min = 1111111111;
+	while (beg != end)
+	{
+		if (*beg < min)
+		{
+			min = *beg;
+		}
+		++beg;
+	}
+	return min;
+}
+template <typename Iter>
 int CountMin(Iter beg, Iter end)
 {
-  int min;
-  while(beg != end)
-  {
-    if(*beg < *(beg+1))
-    {
-      min = *beg;
-    }
-    ++beg;
-  }
-  return min;
-}
-int main()
-{
-  int  A[8] = {5, 8, 3, 9, 4, 2, 6, 7};
-  cout << CountMin(A, A+8);
-  return 0;
+	int min = min_element(beg, end);
+	int result = 0;
+	while (beg != end)
+	{
+		if (*beg == min)
+		++result;
+		++beg;
+	}
+	return result;
 }
