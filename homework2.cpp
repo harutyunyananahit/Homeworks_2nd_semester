@@ -1,13 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <limits>
 using namespace std;
 
 template <typename Iter>
-double middle_arithmetic(Iter beg, Iter end)
+auto average(Iter beg, Iter end)
 {
-	double result = 0;
-	int size = 0;
+	auto result = 0;
+	unsigned int size = 0;
 	while (beg != end)
 	{
 		result += *beg;
@@ -18,9 +19,9 @@ double middle_arithmetic(Iter beg, Iter end)
 }
 
 template <typename Iter>
-int min_element(Iter beg, Iter end)
+auto min_element(Iter beg, Iter end)
 {
-	int min = 1111111111;
+	auto min =  std::numeric_limits<int>::max();
 	while (beg != end)
 	{
 		if (*beg < min)
@@ -68,7 +69,7 @@ unsigned int count_elements_in_interval(Iter beg, Iter end, T a, T b)
 template <typename Iter, typename T>
 T closest_number(Iter beg, Iter end, T R)
 {
-	double differ = 11111111111;
+	double differ =  std::numeric_limits<double>::max();
 	T result;
 	while (beg != end)
 	{
@@ -84,9 +85,9 @@ T closest_number(Iter beg, Iter end, T R)
 
 //Task 4
 template <typename Iter>
-int max_odd_element(Iter beg, Iter end)
+auto max_odd_element(Iter beg, Iter end)
 {
-	int max = -1111111111;
+	auto max =  std::numeric_limits<int>::min();
 	while (beg != end)
 	{
 		if ((*beg % 2) == 1 && *beg > max)
@@ -102,7 +103,7 @@ int max_odd_element(Iter beg, Iter end)
 template <typename Iter>
 int min_even_element(Iter beg, Iter end)
 {
-	int min = 1111111111;
+	auto min = std::numeric_limits<int>::max();
 	while (beg != end)
 	{
 		if ((*beg % 2) == 0 && *beg < min)
@@ -116,9 +117,9 @@ int min_even_element(Iter beg, Iter end)
 
 //Task 7
 template <typename Iter>
-double middle_arithmetic_abs(Iter beg, Iter end)
+auto middle_arithmetic_abs(Iter beg, Iter end)
 {
-	double result = 0;
+	auto result = 0;
 	int size = 0;
 	while (beg != end)
 	{
@@ -133,7 +134,7 @@ double middle_arithmetic_abs(Iter beg, Iter end)
 template<typename Iter>
 void less_than_middle_arithmetic(Iter beg, Iter end)
 {
-	double midAr = middle_arithmetic(beg, end);
+	auto midAr = average(beg, end);
 	while (beg != end)
 	{
 		if (double(*beg) < midAr)
@@ -148,7 +149,7 @@ void less_than_middle_arithmetic(Iter beg, Iter end)
 template <typename Iter>
 unsigned int count_number_of_min_elements(Iter beg, Iter end)
 {
-	int min = min_element(beg, end);
+	auto min = min_element(beg, end);
 	unsigned int result = 0;
 	while (beg != end)
 	{
