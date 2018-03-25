@@ -84,17 +84,9 @@ bool equal_range(Iter b, Iter e, Iter s)
 	}
 }
 
-template<typename Iter>
-void swap(Iter it1, Iter it2)
-{
-	Iter k = it2;
-	it2 = it1;
-	it1 = k;
-}
-
 //Task 7
 template<typename Iter>
-void sortingd(Iter b, Iter e)
+void sort(Iter b, Iter e)
 {
 	Iter current = b;
   Iter before_current;
