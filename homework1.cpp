@@ -1,9 +1,14 @@
 #include <iostream>
+#include <algorithm>
+using namespace std;
+
 //Task 1
 template<typename ForwardIter>
 void advance(ForwardIter& it, unsigned int steps)
 {
-it += steps;
+	while(steps--) {
+		++it;
+	}
 }
 
 //Task 2
@@ -12,9 +17,7 @@ void copy(InputIterator b, InputIterator e, OutputIterator o)
 {
 	while (b != e)
 	{
-		*o = *b;
-		++o;
-		++b;
+		*o++ = *b++;
 	}
 }
 
@@ -37,13 +40,12 @@ Iter find(Iter b, Iter e, const T& val)
 template<typename Iter, typename T>
 Iter remove(Iter b, Iter e, const T& val)
 {
-	Iter result = b;
+	Iter result = find(b, e, val);
 	while (b != e)
 	{
 		if (*b != val)
 		{
-			*result = *b;
-			++result;
+			*result++ = *b;
 		}
 		++b;
 	}
@@ -82,19 +84,33 @@ bool equal_range(Iter b, Iter e, Iter s)
 	}
 }
 
+template<typename Iter>
+void swap(Iter it1, Iter it2)
+{
+	Iter k = it2;
+	it2 = it1;
+	it1 = k;
+}
+
 //Task 7
 template<typename Iter>
-void sort(Iter b, Iter e)
+void sortingd(Iter b, Iter e)
 {
-	while (b != e)
+	Iter current = b;
+  Iter before_current;
+
+  while (current != e)
 	{
-		Iter k;
-		if (*b > *(b + 1))
-		{
-			*k = *(b + 1);
-			*(b + 1) = *b;
-			*b = *k;
-		}
-		++b;
-	}
+		if (current == b || *before_current <= *current)
+    {
+			++current;
+    }
+    else
+    {
+      std::iter_swap(before_current, current);
+      --current;
+    }
+    before_current = current;
+    --before_current;
+  }
 }
